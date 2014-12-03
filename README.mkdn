@@ -1,0 +1,32 @@
+# NAME
+
+Data::Object::Autobox - An Autobox Implementation for Perl 5
+
+# VERSION
+
+version 0.01
+
+# STATUS
+
+<a href="https://travis-ci.org/alnewkirk/Data-Object-Autobox"><img src="https://travis-ci.org/alnewkirk/Data-Object-Autobox.svg?branch=master"></a>
+
+# SYNOPSIS
+
+    use Data::Object::Autobox;
+
+# DESCRIPTION
+
+Data::Object::Autobox implements autoboxing via [Data::Object](http://search.cpan.org/perldoc?Data::Object) to provide
+[boxing](http://en.wikipedia.org/wiki/Object\_type\_(object-oriented\_programming))
+for native Perl 5 data types.
+
+# AUTHOR
+
+Al Newkirk <anewkirk@ana.io>
+
+# COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2014 by Al Newkirk.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.

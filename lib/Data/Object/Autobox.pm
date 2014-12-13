@@ -1,7 +1,7 @@
 # ABSTRACT: An Autobox Implementation for Perl 5
 package Data::Object::Autobox;
 
-use 5.10.0;
+use 5.010;
 
 use strict;
 use warnings;
@@ -9,22 +9,22 @@ use warnings;
 use base 'autobox';
 use Data::Object 'load';
 
-our $VERSION = '0.03'; # VERSION
+our $VERSION = '0.04'; # VERSION
 
 sub import {
     my $class = shift;
 
     $class->SUPER::import(
-        ARRAY     => load 'Data::Object::Array',
-        CODE      => load 'Data::Object::Code',
-        FLOAT     => load 'Data::Object::Float',
-        HASH      => load 'Data::Object::Hash',
-        INTEGER   => load 'Data::Object::Integer',
-        NUMBER    => load 'Data::Object::Number',
-        SCALAR    => load 'Data::Object::Scalar',
-        STRING    => load 'Data::Object::String',
-        UNDEF     => load 'Data::Object::Undef',
-        UNIVERSAL => load 'Data::Object::Universal',
+        ARRAY     => load 'Data::Object::Autobox::Array',
+        CODE      => load 'Data::Object::Autobox::Code',
+        FLOAT     => load 'Data::Object::Autobox::Float',
+        HASH      => load 'Data::Object::Autobox::Hash',
+        INTEGER   => load 'Data::Object::Autobox::Integer',
+        NUMBER    => load 'Data::Object::Autobox::Number',
+        SCALAR    => load 'Data::Object::Autobox::Scalar',
+        STRING    => load 'Data::Object::Autobox::String',
+        UNDEF     => load 'Data::Object::Autobox::Undef',
+        UNIVERSAL => load 'Data::Object::Autobox::Universal',
     );
 
     return;
@@ -44,7 +44,7 @@ Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -167,43 +167,7 @@ object class which is provided to the autobox UNIVERSAL option.
 
 =item *
 
-L<Data::Object::Array>
-
-=item *
-
-L<Data::Object::Code>
-
-=item *
-
-L<Data::Object::Float>
-
-=item *
-
-L<Data::Object::Hash>
-
-=item *
-
-L<Data::Object::Integer>
-
-=item *
-
-L<Data::Object::Number>
-
-=item *
-
-L<Data::Object::Scalar>
-
-=item *
-
-L<Data::Object::String>
-
-=item *
-
-L<Data::Object::Undef>
-
-=item *
-
-L<Data::Object::Universal>
+L<Data::Object>
 
 =back
 

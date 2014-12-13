@@ -4,7 +4,7 @@ Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 # VERSION
 
-version 0.03
+version 0.04
 
 # STATUS
 
@@ -118,16 +118,7 @@ object class which is provided to the autobox UNIVERSAL option.
 
 # SEE ALSO
 
-- [Data::Object::Array](http://search.cpan.org/perldoc?Data::Object::Array)
-- [Data::Object::Code](http://search.cpan.org/perldoc?Data::Object::Code)
-- [Data::Object::Float](http://search.cpan.org/perldoc?Data::Object::Float)
-- [Data::Object::Hash](http://search.cpan.org/perldoc?Data::Object::Hash)
-- [Data::Object::Integer](http://search.cpan.org/perldoc?Data::Object::Integer)
-- [Data::Object::Number](http://search.cpan.org/perldoc?Data::Object::Number)
-- [Data::Object::Scalar](http://search.cpan.org/perldoc?Data::Object::Scalar)
-- [Data::Object::String](http://search.cpan.org/perldoc?Data::Object::String)
-- [Data::Object::Undef](http://search.cpan.org/perldoc?Data::Object::Undef)
-- [Data::Object::Universal](http://search.cpan.org/perldoc?Data::Object::Universal)
+- [Data::Object](http://search.cpan.org/perldoc?Data::Object)
 
 # AUTHOR
 

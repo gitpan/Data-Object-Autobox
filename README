@@ -2,7 +2,7 @@ NAME
     Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 VERSION
-    version 0.03
+    version 0.04
 
 SYNOPSIS
         use Data::Object::Autobox;
@@ -120,25 +120,7 @@ DESCRIPTION
     to the autobox UNIVERSAL option.
 
 SEE ALSO
-    *   Data::Object::Array
-
-    *   Data::Object::Code
-
-    *   Data::Object::Float
-
-    *   Data::Object::Hash
-
-    *   Data::Object::Integer
-
-    *   Data::Object::Number
-
-    *   Data::Object::Scalar
-
-    *   Data::Object::String
-
-    *   Data::Object::Undef
-
-    *   Data::Object::Universal
+    *   Data::Object
 
 AUTHOR
     Al Newkirk <anewkirk@ana.io>

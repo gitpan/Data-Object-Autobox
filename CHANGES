@@ -1,6 +1,10 @@
 Changelog for Data-Object-Autobox
 
-0.04 2014-12-13T20:36:56
+0.05 2014-12-15T12:18:40
+ - Added META file to dist.
+
+0.04 2014-12-13T20:36:59
+ - v0.04
  - Added autobox shims for Data::Object classes.
 
 0.03 2014-12-11T06:49:15

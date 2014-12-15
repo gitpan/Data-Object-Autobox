@@ -9,7 +9,7 @@ use warnings;
 use base 'autobox';
 use Data::Object 'load';
 
-our $VERSION = '0.04'; # VERSION
+our $VERSION = '0.05'; # VERSION
 
 sub import {
     my $class = shift;
@@ -44,7 +44,7 @@ Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 

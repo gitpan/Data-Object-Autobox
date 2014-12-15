@@ -2,7 +2,7 @@ NAME
     Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 VERSION
-    version 0.04
+    version 0.05
 
 SYNOPSIS
         use Data::Object::Autobox;

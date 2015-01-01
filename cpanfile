@@ -1,4 +1,5 @@
 requires "Data::Object" => "0.04";
+requires "Moo" => "1.006001";
 requires "autobox" => "2.82";
 requires "perl" => "v5.10.0";
 

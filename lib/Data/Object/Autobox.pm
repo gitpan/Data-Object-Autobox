@@ -9,22 +9,27 @@ use warnings;
 use base 'autobox';
 use Data::Object 'load';
 
-our $VERSION = '0.05'; # VERSION
+our $VERSION = '0.06'; # VERSION
 
 sub import {
     my $class = shift;
+    my $param = shift;
+
+    my ($flavor) = $param =~ /^[-:](autoload|composite)$/ if $param;
+    $flavor = 'composite' unless $flavor;
+    $flavor = ucfirst lc $flavor;
 
     $class->SUPER::import(
-        ARRAY     => load 'Data::Object::Autobox::Array',
-        CODE      => load 'Data::Object::Autobox::Code',
-        FLOAT     => load 'Data::Object::Autobox::Float',
-        HASH      => load 'Data::Object::Autobox::Hash',
-        INTEGER   => load 'Data::Object::Autobox::Integer',
-        NUMBER    => load 'Data::Object::Autobox::Number',
-        SCALAR    => load 'Data::Object::Autobox::Scalar',
-        STRING    => load 'Data::Object::Autobox::String',
-        UNDEF     => load 'Data::Object::Autobox::Undef',
-        UNIVERSAL => load 'Data::Object::Autobox::Universal',
+        ARRAY     => load "Data::Object::Autobox::${flavor}::Array",
+        CODE      => load "Data::Object::Autobox::${flavor}::Code",
+        FLOAT     => load "Data::Object::Autobox::${flavor}::Float",
+        HASH      => load "Data::Object::Autobox::${flavor}::Hash",
+        INTEGER   => load "Data::Object::Autobox::${flavor}::Integer",
+        NUMBER    => load "Data::Object::Autobox::${flavor}::Number",
+        SCALAR    => load "Data::Object::Autobox::${flavor}::Scalar",
+        STRING    => load "Data::Object::Autobox::${flavor}::String",
+        UNDEF     => load "Data::Object::Autobox::${flavor}::Undef",
+        UNIVERSAL => load "Data::Object::Autobox::${flavor}::Universal",
     );
 
     return;
@@ -44,7 +49,7 @@ Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -54,7 +59,7 @@ version 0.05
     my $output = $input->grep('$a < 5')->unique->sort; # [1,2,3]
 
     $output->isa('Data::Object::Array');
-    $output->join(', '); # 1,2,3
+    $output->join(',')->print; # 1,2,3
 
 =head1 DESCRIPTION
 
@@ -70,6 +75,32 @@ makes it so that you do not need to explicitly create the initial data type
 object, and once the initial autobox method call is made, the Data::Object
 boxing takes over. B<Note: This is an early release available for testing and
 feedback and as such is subject to change.>
+
+=head1 FLAVORS
+
+Data::Object::Autobox endeavors to implement autoboxing in various flavors to be
+suitable in different environments. Currently, there are two boxing flavors
+available, C<autoload> and C<composite>, both of which implement the boxing
+architecture but handle dispatching and returning is different ways. The default
+boxing flavor is C<composite> because that flavor is the closest, in
+implementation, to what most people are already familiar with. The following
+example describes how flavors are enacted:
+
+    use Data::Object::Autobox -autoload;  # autoboxing via autoload
+    use Data::Object::Autobox -composite; # autoboxing via composite
+
+The differences between the main boxing flavors is in how they react to input,
+dispatch, and return data. The C<autoload> flavor uses AUTOLOAD to delegate
+autoboxing to the L<Data::Object> framework. It is likely that once the initial
+delegation happens, autoboxing is no longer necessary in the chaining of
+routines. Additionally, the data returned from autoboxed actions under autoload
+will always be Data::Object instances.
+
+Conversely, the C<composite> flavor uses role composition, with the respective
+roles which L<Data::Object> objects are comprised of, to provide type-specific
+boxing functions only. This implementation uses the typical autoboxing approach,
+i.e. the autobox pragma handles the boxing, compsition provides the functions,
+and the data returned is not a Data::Object instance.
 
 =head2 Array Methods
 
@@ -150,7 +181,7 @@ $undef->method(@args) >>, which will act on the C<$undef> value and will
 return a new data type object. Many undef methods are simply wrappers around
 core functions, but there are additional operations and modifications to core
 behavior. Undef methods are handled via the L<Data::Object::Undef> object
-class which is provided to the autobox STRING option.
+class which is provided to the autobox UNDEF option.
 
 =head2 Universal Methods
 

@@ -1,17 +1,17 @@
-package Data::Object::Autobox::Number;
+package Data::Object::Autobox::Autoload::Float;
 
 use 5.010;
 use strict;
 use warnings;
 
 use Carp 'croak';
-use Data::Object 'type_number';
+use Data::Object 'type_float';
 use Scalar::Util 'blessed';
 
 sub AUTOLOAD {
-    my $self = $_[0] = type_number $_[0];
+    my $self = $_[0] = type_float $_[0];
     my ($package, $method) = our $AUTOLOAD =~ /^(.+)::(.+)$/;
-    my $delegate = 'Data::Object::Number';
+    my $delegate = 'Data::Object::Float';
 
     croak "Undefined subroutine &${delegate}::$method called"
         unless blessed $self && $self->isa($delegate);
@@ -19,7 +19,7 @@ sub AUTOLOAD {
     croak "Can't locate object method \"$method\" via package \"$delegate\""
         unless my $source = $self->can($method);
 
-    goto $source; # delegate to Data::Object::Number ...
+    goto $source; # delegate to Data::Object::Float ...
 }
 
 1;

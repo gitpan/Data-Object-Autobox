@@ -1,4 +1,4 @@
-package Data::Object::Autobox::Scalar;
+package Data::Object::Autobox::Autoload::Scalar;
 
 use 5.010;
 use strict;

@@ -1,17 +1,17 @@
-package Data::Object::Autobox::String;
+package Data::Object::Autobox::Autoload::Universal;
 
 use 5.010;
 use strict;
 use warnings;
 
 use Carp 'croak';
-use Data::Object 'type_string';
+use Data::Object 'type_universal';
 use Scalar::Util 'blessed';
 
 sub AUTOLOAD {
-    my $self = $_[0] = type_string $_[0];
+    my $self = $_[0] = type_universal $_[0];
     my ($package, $method) = our $AUTOLOAD =~ /^(.+)::(.+)$/;
-    my $delegate = 'Data::Object::String';
+    my $delegate = 'Data::Object::Universal';
 
     croak "Undefined subroutine &${delegate}::$method called"
         unless blessed $self && $self->isa($delegate);
@@ -19,7 +19,7 @@ sub AUTOLOAD {
     croak "Can't locate object method \"$method\" via package \"$delegate\""
         unless my $source = $self->can($method);
 
-    goto $source; # delegate to Data::Object::String ...
+    goto $source; # delegate to Data::Object::Universal ...
 }
 
 1;

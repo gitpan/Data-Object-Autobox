@@ -1,17 +1,17 @@
-package Data::Object::Autobox::Hash;
+package Data::Object::Autobox::Autoload::Integer;
 
 use 5.010;
 use strict;
 use warnings;
 
 use Carp 'croak';
-use Data::Object 'type_hash';
+use Data::Object 'type_integer';
 use Scalar::Util 'blessed';
 
 sub AUTOLOAD {
-    my $self = $_[0] = type_hash $_[0];
+    my $self = $_[0] = type_integer $_[0];
     my ($package, $method) = our $AUTOLOAD =~ /^(.+)::(.+)$/;
-    my $delegate = 'Data::Object::Hash';
+    my $delegate = 'Data::Object::Integer';
 
     croak "Undefined subroutine &${delegate}::$method called"
         unless blessed $self && $self->isa($delegate);
@@ -19,7 +19,7 @@ sub AUTOLOAD {
     croak "Can't locate object method \"$method\" via package \"$delegate\""
         unless my $source = $self->can($method);
 
-    goto $source; # delegate to Data::Object::Hash ...
+    goto $source; # delegate to Data::Object::Integer ...
 }
 
 1;

@@ -4,13 +4,13 @@
       "Al Newkirk <anewkirk@ana.io>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 5.025, CPAN::Meta::Converter version 2.142690",
+   "generated_by" : "Dist::Zilla version 5.029, CPAN::Meta::Converter version 2.143240",
    "license" : [
       "perl_5"
    ],
    "meta-spec" : {
       "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
-      "version" : "2"
+      "version" : 2
    },
    "name" : "Data-Object-Autobox",
    "prereqs" : {
@@ -22,6 +22,7 @@
       "runtime" : {
          "requires" : {
             "Data::Object" : "0.04",
+            "Moo" : "1.006001",
             "autobox" : "2.82",
             "perl" : "v5.10.0"
          }
@@ -34,13 +35,17 @@
    },
    "release_status" : "stable",
    "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/alnewkirk/Data-Object-Autobox/issues"
+      },
+      "homepage" : "http://metacpan.org/release/Data-Object-Autobox/",
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/alnewkirk/Data-Object-Autobox.git",
          "web" : "https://github.com/alnewkirk/Data-Object-Autobox"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_authority" : "cpan:AWNCORP"
 }
 

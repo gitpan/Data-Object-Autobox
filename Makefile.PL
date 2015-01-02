@@ -21,11 +21,11 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.010000",
   "NAME" => "Data::Object::Autobox",
   "PREREQ_PM" => {
-    "Data::Object" => "0.04",
+    "Data::Object" => "0.11",
     "Moo" => "1.006001",
     "autobox" => "2.82"
   },
-  "VERSION" => "0.06",
+  "VERSION" => "0.07",
   "test" => {
     "TESTS" => "t/data/object/*.t"
   }
@@ -33,7 +33,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
-  "Data::Object" => "0.04",
+  "Data::Object" => "0.11",
   "ExtUtils::MakeMaker" => 0,
   "Moo" => "1.006001",
   "autobox" => "2.82"

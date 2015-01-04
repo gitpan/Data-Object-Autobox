@@ -25,9 +25,9 @@ my %WriteMakefileArgs = (
     "Moo" => "1.006001",
     "autobox" => "2.82"
   },
-  "VERSION" => "0.07",
+  "VERSION" => "0.08",
   "test" => {
-    "TESTS" => "t/data/object/*.t"
+    "TESTS" => "t/*.t t/data/object/*.t"
   }
 );
 

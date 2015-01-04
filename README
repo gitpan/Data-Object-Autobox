@@ -31,7 +31,7 @@ FLAVORS
     flavors to be suitable in different environments. Currently, there are
     two boxing flavors available, autoload and composite, both of which
     implement the boxing architecture but handle dispatching and returning
-    is different ways. The default boxing flavor is composite because that
+    in different ways. The default boxing flavor is composite because that
     flavor is the closest, in implementation, to what most people are
     already familiar with. The following example describes how flavors are
     enacted:
@@ -52,6 +52,24 @@ FLAVORS
     the typical autoboxing approach, i.e. the autobox pragma handles the
     boxing, compsition provides the functions, and the data returned is not
     a Data::Object instance.
+
+    Additionally, this module supports passing user-defined classes to
+    Data::Object::Autobox. The follow is an example of passing custom
+    user-defined classes which can be completely custom, or inherit from
+    any of the existing implementations.
+
+        use Data::Object::Autobox -custom => (
+            ARRAY     => "MyApp::Autobox::Array",
+            CODE      => "MyApp::Autobox::Code",
+            FLOAT     => "MyApp::Autobox::Float",
+            HASH      => "MyApp::Autobox::Hash",
+            INTEGER   => "MyApp::Autobox::Integer",
+            NUMBER    => "MyApp::Autobox::Number",
+            SCALAR    => "MyApp::Autobox::Scalar",
+            STRING    => "MyApp::Autobox::String",
+            UNDEF     => "MyApp::Autobox::Undef",
+            UNIVERSAL => "MyApp::Autobox::Universal",
+        );
 
  Array Methods
 

@@ -30,3 +30,14 @@ lib/Data/Object/Autobox/Composite/String.pm
 lib/Data/Object/Autobox/Composite/Undef.pm
 lib/Data/Object/Autobox/Composite/Universal.pm
 t/data/object/autobox.t
+t/lib/MyApp/Autobox/Array.pm
+t/lib/MyApp/Autobox/Code.pm
+t/lib/MyApp/Autobox/Float.pm
+t/lib/MyApp/Autobox/Hash.pm
+t/lib/MyApp/Autobox/Integer.pm
+t/lib/MyApp/Autobox/Number.pm
+t/lib/MyApp/Autobox/Scalar.pm
+t/lib/MyApp/Autobox/String.pm
+t/lib/MyApp/Autobox/Undef.pm
+t/lib/MyApp/Autobox/Universal.pm
+t/myapp.t

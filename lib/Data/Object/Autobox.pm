@@ -9,28 +9,34 @@ use warnings;
 use base 'autobox';
 use Data::Object 'load';
 
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 sub import {
     my $class = shift;
     my $param = shift;
 
-    my ($flavor) = $param =~ /^[-:](autoload|composite)$/ if $param;
-    $flavor = 'composite' unless $flavor;
-    $flavor = ucfirst lc $flavor;
+    my ($default, %options) = ('composite', @_);
+    my ($flavor) = $param =~ /^[-:](autoload|composite|custom)$/ if $param;
 
-    $class->SUPER::import(
-        ARRAY     => load "Data::Object::Autobox::${flavor}::Array",
-        CODE      => load "Data::Object::Autobox::${flavor}::Code",
-        FLOAT     => load "Data::Object::Autobox::${flavor}::Float",
-        HASH      => load "Data::Object::Autobox::${flavor}::Hash",
-        INTEGER   => load "Data::Object::Autobox::${flavor}::Integer",
-        NUMBER    => load "Data::Object::Autobox::${flavor}::Number",
-        SCALAR    => load "Data::Object::Autobox::${flavor}::Scalar",
-        STRING    => load "Data::Object::Autobox::${flavor}::String",
-        UNDEF     => load "Data::Object::Autobox::${flavor}::Undef",
-        UNIVERSAL => load "Data::Object::Autobox::${flavor}::Universal",
-    );
+    $flavor = $default if ! $flavor
+        or $flavor eq 'custom' and ! keys %options;
+
+    unless (lc $flavor eq 'custom') {
+        %options = (
+            ARRAY     => load "${class}::\u${flavor}::Array",
+            CODE      => load "${class}::\u${flavor}::Code",
+            FLOAT     => load "${class}::\u${flavor}::Float",
+            HASH      => load "${class}::\u${flavor}::Hash",
+            INTEGER   => load "${class}::\u${flavor}::Integer",
+            NUMBER    => load "${class}::\u${flavor}::Number",
+            SCALAR    => load "${class}::\u${flavor}::Scalar",
+            STRING    => load "${class}::\u${flavor}::String",
+            UNDEF     => load "${class}::\u${flavor}::Undef",
+            UNIVERSAL => load "${class}::\u${flavor}::Universal",
+        );
+    }
+
+    $class->SUPER::import(%options);
 
     return;
 }
@@ -49,7 +55,7 @@ Data::Object::Autobox - An Autobox Implementation for Perl 5
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -81,7 +87,7 @@ feedback and as such is subject to change.>
 Data::Object::Autobox endeavors to implement autoboxing in various flavors to be
 suitable in different environments. Currently, there are two boxing flavors
 available, C<autoload> and C<composite>, both of which implement the boxing
-architecture but handle dispatching and returning is different ways. The default
+architecture but handle dispatching and returning in different ways. The default
 boxing flavor is C<composite> because that flavor is the closest, in
 implementation, to what most people are already familiar with. The following
 example describes how flavors are enacted:
@@ -101,6 +107,24 @@ roles which L<Data::Object> objects are comprised of, to provide type-specific
 boxing functions only. This implementation uses the typical autoboxing approach,
 i.e. the autobox pragma handles the boxing, compsition provides the functions,
 and the data returned is not a Data::Object instance.
+
+Additionally, this module supports passing user-defined classes to
+Data::Object::Autobox. The follow is an example of passing custom user-defined
+classes which can be completely custom, or inherit from any of the existing
+implementations.
+
+    use Data::Object::Autobox -custom => (
+        ARRAY     => "MyApp::Autobox::Array",
+        CODE      => "MyApp::Autobox::Code",
+        FLOAT     => "MyApp::Autobox::Float",
+        HASH      => "MyApp::Autobox::Hash",
+        INTEGER   => "MyApp::Autobox::Integer",
+        NUMBER    => "MyApp::Autobox::Number",
+        SCALAR    => "MyApp::Autobox::Scalar",
+        STRING    => "MyApp::Autobox::String",
+        UNDEF     => "MyApp::Autobox::Undef",
+        UNIVERSAL => "MyApp::Autobox::Universal",
+    );
 
 =head2 Array Methods
 
